@@ -25,4 +25,20 @@ public class ReservationRepository {
     public Reservation save(Reservation reservation) {
         return reservationCrudRepository.save(reservation);
     }
+
+    public void delete(Reservation c){
+        reservationCrudRepository.delete(c);
+    }
+
+    // public List<Reservation> getDatesReport(Date inicio, Date fin){
+    // return reservationCrudRepository.findAllByIdSStartDateAfterAndStartDateBefore(inicio,fin);
+    //}
+    //public List<Reservation> getStatusReport(String sts){
+     //   return reservationCrudRepository.finindAllByStatus(sts);
+    //}
+
+    //public List<Object[]> getTopClients(){ return reservationCrudRepository.getTopClients(); }
+
+
 }
+

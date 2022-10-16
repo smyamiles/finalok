@@ -2,7 +2,6 @@ package com.example.tutoriareto3.service;
 
 import com.example.tutoriareto3.entities.Machine;
 import com.example.tutoriareto3.repository.MachineRepository;
-import com.example.tutoriareto3.repository.crudRepository.MachineCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +44,32 @@ public class MachineService {
             flag = true;
         }
         return  flag;
+    }
+
+    public Machine update(Machine m){
+        if(m.getId()!=null){
+            Optional<Machine> old= machineRepository.getMachine(m.getId());
+            if(old.isPresent()){
+                Machine k=old.get();
+                if(m.getName()!=null){
+                    k.setName(m.getName());
+                }
+                if(m.getDescription()!=null){
+                    k.setDescription(m.getDescription());
+                }
+                if(m.getBrand()!=null){
+                    k.setBrand(m.getBrand());
+                }
+                if(m.getYear()!=null){
+                    k.setYear(m.getYear());
+                }
+                if(m.getCategory()!=null){
+                    k.setCategory(m.getCategory());
+                }
+                return machineRepository.save(k);
+            }
+        }
+        return m;
     }
 
 }

@@ -29,4 +29,5 @@ public class MachineRepository {
     public Optional<Machine> getMachine(int id){
         return machineCrudRepository.findById(id);
     }
+
 }

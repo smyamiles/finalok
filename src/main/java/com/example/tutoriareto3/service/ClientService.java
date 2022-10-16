@@ -22,16 +22,50 @@ public class ClientService {
         return clientRepository.getClient(clientId);
     }
 
-    public Client save(Client client){
-        if(client.getIdClient()==null){
+    public Client save(Client client) {
+        if (client.getIdClient() == null) {
             return clientRepository.save(client);
-        }else{
-            Optional<Client> e= clientRepository.getClient(client.getIdClient());
-            if(!e.isPresent()){
+        } else {
+            Optional<Client> e = clientRepository.getClient(client.getIdClient());
+            if (!e.isPresent()) {
                 return clientRepository.save(client);
-            }else{
+            } else {
                 return client;
             }
         }
     }
+        public boolean delete(int id){
+            Optional<Client> e= clientRepository.getClient(id);
+            if(e.isPresent()){
+                clientRepository.delete(e.get());
+                return true;
+            }
+            return false;
+        }
+        public Client update(Client client){
+            if (client.getIdClient() != null) {
+                Optional<Client> old = clientRepository.getClient(client.getIdClient());
+                if (old.isPresent()) {
+                    Client k = old.get();
+
+                    if (client.getAge() != null) {
+                        k.setAge(client.getAge());
+                    }
+                    if (client.getPassword() != null) {
+                        k.setPassword(client.getPassword());
+                    }
+                    if (client.getEmail() != null) {
+                        k.setEmail(client.getEmail());
+                    }
+                    if (client.getName() != null) {
+                        k.setName(client.getName());
+                    }
+
+                    return clientRepository.save(k);
+                }
+            }
+            return client;
+
+        }
 }
+

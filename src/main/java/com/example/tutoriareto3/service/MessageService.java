@@ -1,8 +1,6 @@
 package com.example.tutoriareto3.service;
 
-import com.example.tutoriareto3.entities.Client;
 import com.example.tutoriareto3.entities.Message;
-import com.example.tutoriareto3.repository.ClientRepository;
 import com.example.tutoriareto3.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +34,44 @@ public class MessageService {
             }
         }
     }
+
+    public Message update(Message message) {
+        if (message.getIdMessage() != null) {
+            Optional<Message> e = messageRepository.getMessage(message.getIdMessage());
+            if (e.isPresent()) {
+                if (message.getStartDate() != null) {
+                    e.get().setStartDate(message.getStartDate());
+                }
+                if (message.getDevolutionDate() != null) {
+                    e.get().setDevolutionDate(message.getDevolutionDate());
+                }
+                if (message.getMachine() != null) {
+                    e.get().setMachine(message.getMachine());
+                }
+                if (message.getClient() != null) {
+                    e.get().setClient(message.getClient());
+                }
+                messageRepository.save(e.get());
+                return e.get();
+            } else {
+                return message;
+            }
+        } else {
+            return message;
+        }
+
+
+    }
+    public boolean delete ( int id){
+        boolean flag = false;
+        Optional<Message> e = messageRepository.getMessage(id);
+        if (e.isPresent()) {
+            messageRepository.delete(e.get());
+            flag = true;
+        }
+        return flag;
+    }
+
 }
 
 

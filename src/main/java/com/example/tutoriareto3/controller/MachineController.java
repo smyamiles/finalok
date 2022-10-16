@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/Machine")
@@ -20,9 +21,26 @@ public class MachineController {
         return machineService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Optional<Machine> getById(@PathVariable("id") int id){
+        return machineService.getMachine(id);
+    }
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Machine save(@RequestBody Machine m){
          return machineService.save(m);
     }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Machine update(@RequestBody Machine m){
+        return machineService.update(m);
+    }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return machineService.delete(id);
+    }
+
 }

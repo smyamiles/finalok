@@ -16,7 +16,6 @@ public class CategoryService {
 
     public List<Category> getAll(){
         return categoryRepository.getALL();
-
     }
 
     public Optional<Category> getCategory(int id){
@@ -45,5 +44,23 @@ public class CategoryService {
         }
         return  flag;
     }
+
+    public Category update(Category category){
+        if(category.getId()!=null){
+            Optional<Category> old=categoryRepository.getCategory(category.getId());
+            if(old.isPresent()){
+                Category k=old.get();
+                if(category.getName()!=null){
+                    k.setName(category.getName());
+                }
+                if(category.getDescription()!=null){
+                    k.setDescription(category.getDescription());
+                }
+                return categoryRepository.save(k);
+            }
+        }
+        return category;
+    }
+
 
 }
