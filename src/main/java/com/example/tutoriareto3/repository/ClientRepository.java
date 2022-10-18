@@ -10,26 +10,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-
 public class ClientRepository {
     @Autowired
-    private ClientCrudRepository clientCrudRepository;
+    private ClientCrudRepository clientesCrudRepository;
 
-    public List<Client> getAll(){
-        return (List<Client>) clientCrudRepository.findAll();
-    }
+    public List<Client> getAll(){ return (List<Client>) clientesCrudRepository.findAll(); }
 
-    public Optional<Client> getClient(int id){
-        return clientCrudRepository.findById(id);
-    }
+    public Client save(Client c){ return clientesCrudRepository.save(c); }
 
-    public Client save(Client client){
-        return clientCrudRepository.save(client);
-    }
+    public void delete(Client c){ clientesCrudRepository.delete(c);}
 
-    public void delete(Client client){
-        clientCrudRepository.delete(client);
-    }
+    public Optional<Client> getClient(int id){ return clientesCrudRepository.findById(id);}
 
 }
 

@@ -39,11 +39,11 @@ public class MessageService {
         if (message.getIdMessage() != null) {
             Optional<Message> e = messageRepository.getMessage(message.getIdMessage());
             if (e.isPresent()) {
-                if (message.getStartDate() != null) {
-                    e.get().setStartDate(message.getStartDate());
+                if (message.getMessageText() != null) {
+                    e.get().setMessageText(message.getMessageText());
                 }
-                if (message.getDevolutionDate() != null) {
-                    e.get().setDevolutionDate(message.getDevolutionDate());
+                if (message.getMachine() != null) {
+                    e.get().setMachine(message.getMachine());
                 }
                 if (message.getMachine() != null) {
                     e.get().setMachine(message.getMachine());
