@@ -12,18 +12,24 @@ import java.util.Optional;
 
 public class ScoreRepository {
     @Autowired
-    private ScoreCrudRepository scoreCrudRepository;
+    private ScoreCrudRepository calificacionCrudRepository;
 
     public List<Score> getAll(){
-        return (List<Score>) scoreCrudRepository.findAll();
+        return (List<Score>) calificacionCrudRepository.findAll();
     }
-    public Optional<Score> getById(int id){ return scoreCrudRepository.findById(id);  }
+
     public Score save(Score c){
-        return scoreCrudRepository.save(c);
+        return calificacionCrudRepository.save(c);
     }
+
     public void delete(Score c){
-        scoreCrudRepository.delete(c);
+        calificacionCrudRepository.delete(c);
     }
+
+    public Optional<Score> getCalificacion(int id){
+        return calificacionCrudRepository.findById(id);
+    }
+
 
 }
 

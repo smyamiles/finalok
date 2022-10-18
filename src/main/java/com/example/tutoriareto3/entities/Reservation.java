@@ -32,7 +32,6 @@ public class Reservation implements Serializable {
     @JsonIgnoreProperties("reservation")
     private Score score;
 
-
     public Integer getIdReservation() {
         return idReservation;
     }
@@ -88,6 +87,4 @@ public class Reservation implements Serializable {
     public void setScore(Score score) {
         this.score = score;
     }
-
-
 }

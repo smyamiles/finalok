@@ -1,6 +1,9 @@
 package com.example.tutoriareto3.controller;
 
 import com.example.tutoriareto3.entities.Reservation;
+import com.example.tutoriareto3.entities.dto.CountMachine;
+import com.example.tutoriareto3.entities.dto.StatusAccount;
+import com.example.tutoriareto3.entities.dto.TopClients;
 import com.example.tutoriareto3.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,17 +38,34 @@ public class ReservationController {
     public boolean delete(@PathVariable("id") int id){
         return reservationService.delete(id);
     }
-    /*@GetMapping("/report-dates/{dateA}/{dateB}")
-    public List<Reservation> getByDates(@PathVariable("dateA")String da,@PathVariable("dateB")String db ){ return reservationService.getReservationsByPeriod(da,db);}
-    @GetMapping("/report-status")
-    public StatusAccount getByStatus(){
-        return reservationService.getReportByStatus();
+
+    //RETO 5
+
+    @GetMapping("/report-costue")
+    public List<CountMachine> getReservationsReportRoom(){
+        return reservationService.getTopMachine();
     }
+
     @GetMapping("/report-clients")
-    public List<TopClients> getTopClients(){
-        return reservationService.getTopclients();
+    public List<TopClients> getReservationsReportClient(){
+        return reservationService.getTopClients();
     }
-*/
+
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
+        return reservationService.getReservationsByPeriod(dateOne,dateTwo);
+    }
+    @GetMapping("/report-dates/amount/{dateOne}/{dateTwo}")
+    public Integer getReservationsReportDatesAmount(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
+        return reservationService.getReservationsByPeriod(dateOne,dateTwo).size();
+    }
+
+    @GetMapping("/report-status")
+    public StatusAccount getReservationsStatusReport(){
+        return reservationService.getReservationsStatusReport();
+    }
+
+
 
 }
 

@@ -4,16 +4,16 @@ package com.example.tutoriareto3.entities.dto;
 import com.example.tutoriareto3.entities.Client;
 
 public class TopClients {
-    private int total;
+    private long total;
     private Client client;
 
 
-    public TopClients(int total, Client client){
+    public TopClients(long total, Client client){
         this.total=total;
         this.client=client;
     }
 
-    public int getTotal() {
+    public long getTotal() {
         return total;
     }
 
